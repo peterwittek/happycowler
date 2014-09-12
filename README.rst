@@ -6,7 +6,7 @@ The primary reason for this crawler is that HappyCow is difficult to use on a mo
 
 Dependencies
 ============
-The script works with Python 2. It relies on `Beautiful Soup<http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
+The script works with Python 2. It relies on `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
 
 Usage
 =====
