@@ -5,6 +5,7 @@ Created on Fri Sep 12 12:52:20 2014
 @author: wittek
 """
 import urllib2
+import sys
 from time import sleep
 from bs4 import BeautifulSoup
 
@@ -99,8 +100,11 @@ def parse_results_page(results_url, page, target_file):
     if next_page != None:
         parse_results_page(results_url, next_page.get('href'), target_file)
 
-target_file='kml/Tokyo_Vegan_and_Vegetarian.kml'
-result_page='http://www.happycow.net/asia/japan/tokyo/'
+if len(sys.argv) != 3:
+    print "Usage: python2 happycowler.py results_url output_file"
+    exit(-1)
+result_page = sys.argv[1]
+target_file = sys.argv[2]
 write_header(target_file)
 parse_results_page(result_page,'',target_file)
 write_footer(target_file)
