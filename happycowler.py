@@ -84,15 +84,31 @@ def parse_results_page(results_url, page, target_file):
         names.append(business.find('h3').text)
         tags.append(process_tags(business.findAll('ul', class_='tags')))
         ratings.append(business.find('span',class_='rating').text[:3])
-        addresses.append(business.find('address').text)
-        phone_numbers.append(business.find('div', class_='phone').text)
-        opening_hours.append(business.find('div', class_='time').text)
+        address = business.find('address')
+        if address != None:
+            addresses.append(address.text)
+        else:
+            addresses.append('')
+        phone_number = business.find('div', class_='phone')
+        if phone_number != None:
+            phone_numbers.append(phone_number.text)
+        else:
+            phone_numbers.append('')
+        opening_hour = business.find('div', class_='time')
+        if opening_hour != None:
+            opening_hours.append(opening_hour.text)
+        else:
+            opening_hours.append('')
         cuisine = business.find('em')
         if cuisine != None:
             cuisines.append(cuisine.text[9:])
         else:
             cuisines.append('')
-        descriptions.append(business.find('p').text)
+        description = business.find('p')
+        if description != None:
+            descriptions.append(description.text)
+        else:
+            description.append('')
         sleep(1)
 
     append_results_to_file(target_file, coordinates, names, tags, ratings, addresses, phone_numbers, opening_hours, cuisines, descriptions)
