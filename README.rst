@@ -2,7 +2,7 @@ HappyCowler
 ==========
 HappyCowler is a crawler and parser for extracting geospatial data from HappyCow.net. The script crawls the descriptions and coordinates from the website, and writes a KML file with the extracted information that can be used with arbitrary GPS application.
 
-The primary reason for this crawler is that HappyCow is difficult to use on a mobile. The apps require the presence of proprietary market applications such as Google Play and payment. Thus it is not possible to obtain the app anonymously. The website itself relies heavily on Javascript, and it is next to useless on a cell phone. By crawling the database, we obtain an offline KML file that can be used with a GPS app of your choice, without Internet access.
+The primary reason for this crawler is that HappyCow is difficult to use on a mobile. The apps require the presence of proprietary market applications such as Google Play and payment. Thus it is not possible to obtain the app anonymously. The website itself relies heavily on Javascript, and it is next to useless on a cell phone. By crawling the database, we obtain an offline KML file that can be used with a GPS app of your choice, without need for Internet access while on the go.
 
 Dependencies
 ============
