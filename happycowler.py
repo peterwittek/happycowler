@@ -12,10 +12,10 @@ from bs4 import BeautifulSoup
 def process_tags(tag_candidates):
     tag='Other'
     for tag_candidate in tag_candidates:
-        if tag_candidate.find('li',class_='vegan') != None:
+        if tag_candidate.find('li',class_='vegan') is not None:
             tag='Vegan'
             break
-        if tag_candidate.find('li',class_='vegetarian') != None:
+        if tag_candidate.find('li',class_='vegetarian') is not None:
             tag='Vegetarian'
             break
     return tag
@@ -65,8 +65,8 @@ def append_results_to_file(target_file, coordinates, names, tags, ratings, addre
         f.write('  </Placemark>\n')
     f.close()
 
-def parse_results_page(results_url, page, target_file):
-    page = urllib2.urlopen(results_url + page)
+def parse_results_page(results_url, page_no, target_file):
+    page = urllib2.urlopen(results_url + page_no)
     parsed_html = BeautifulSoup(page)
     
     coordinates = []
@@ -85,35 +85,38 @@ def parse_results_page(results_url, page, target_file):
         tags.append(process_tags(business.findAll('ul', class_='tags')))
         ratings.append(business.find('span',class_='rating').text[:3])
         address = business.find('address')
-        if address != None:
+        if address is not None:
             addresses.append(address.text)
         else:
             addresses.append('')
         phone_number = business.find('div', class_='phone')
-        if phone_number != None:
+        if phone_number is not None:
             phone_numbers.append(phone_number.text)
         else:
             phone_numbers.append('')
         opening_hour = business.find('div', class_='time')
-        if opening_hour != None:
+        if opening_hour is not None:
             opening_hours.append(opening_hour.text)
         else:
             opening_hours.append('')
         cuisine = business.find('em')
-        if cuisine != None:
+        if cuisine is not None:
             cuisines.append(cuisine.text[9:])
         else:
             cuisines.append('')
         description = business.find('p')
-        if description != None:
+        if description is not None:
             descriptions.append(description.text)
         else:
             description.append('')
         sleep(1)
 
     append_results_to_file(target_file, coordinates, names, tags, ratings, addresses, phone_numbers, opening_hours, cuisines, descriptions)
-    next_page = parsed_html.find('span',class_='cpaging').find('a',class_='next')
-    if next_page != None:
+    pager = parsed_html.find('span',class_='cpaging')
+    next_page = None
+    if pager is not None:
+      next_page = find('a',class_='next')
+    if next_page is not None:
         parse_results_page(results_url, next_page.get('href'), target_file)
 
 if len(sys.argv) != 3:
