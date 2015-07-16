@@ -115,7 +115,7 @@ def parse_results_page(results_url, page_no, target_file):
     pager = parsed_html.find('span',class_='cpaging')
     next_page = None
     if pager is not None:
-      next_page = find('a',class_='next')
+      next_page = parsed_html.find('a', class_='next')
     if next_page is not None:
         parse_results_page(results_url, next_page.get('href'), target_file)
 
