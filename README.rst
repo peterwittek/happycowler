@@ -6,7 +6,7 @@ The primary reason for this crawler is that HappyCow is difficult to use on a mo
 
 Dependencies
 ============
-The script works with Python 2. It relies on `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
+The script works with both Python 2 and 3. It relies on `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
 
 Usage
 =====
@@ -18,8 +18,8 @@ Installation
 ============
 Follow the standard procedure for installing Python modules from source:
 
-``$ sudo python2 setup.py install``
+``$ sudo python setup.py install``
 
 Disclaimer
 ==============
-It is conceivable that crawling HappyCow is not legal.
+It is conceivable that crawling HappyCow is illegal.
