@@ -4,7 +4,11 @@ Created on Fri Sep 12 12:52:20 2014
 
 @author: wittek
 """
-import urllib2
+from __future__ import print_function
+try:
+    from urllib2 import urlopen
+except ImportError:
+    from urllib.request import urlopen
 import sys
 from time import sleep
 from bs4 import BeautifulSoup
@@ -21,7 +25,7 @@ def process_tags(tag_candidates):
     return tag
     
 def parse_restaurant_page(restaurant_url):
-    restaurant_page = urllib2.urlopen(restaurant_url)
+    restaurant_page = urlopen(restaurant_url)
     parsed_restaurant_html = BeautifulSoup(restaurant_page)
     gmap_link=parsed_restaurant_html.find('div', class_='map-holder').find('a')
     text_link=gmap_link.find('img').get('src')
@@ -66,7 +70,7 @@ def append_results_to_file(target_file, coordinates, names, tags, ratings, addre
     f.close()
 
 def parse_results_page(results_url, page_no, target_file):
-    page = urllib2.urlopen(results_url + page_no)
+    page = urlopen(results_url + page_no)
     parsed_html = BeautifulSoup(page)
     
     coordinates = []
@@ -120,7 +124,7 @@ def parse_results_page(results_url, page_no, target_file):
         parse_results_page(results_url, next_page.get('href'), target_file)
 
 if len(sys.argv) != 3:
-    print "Usage: python2 happycowler.py results_url output_file"
+    print("Usage: python2 happycowler.py results_url output_file")
     exit(-1)
 result_page = sys.argv[1]
 target_file = sys.argv[2]
