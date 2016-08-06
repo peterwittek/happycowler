@@ -4,11 +4,15 @@ try:
     from urllib2 import Request, urlopen
 except ImportError:
     from urllib.request import Request, urlopen
-import random
 import sys
-from time import sleep
 from bs4 import BeautifulSoup
 
+
+def normalize(text):
+    if sys.version_info.major == 3:
+        return text.strip()
+    else:
+        return text.encode("utf-8").strip()
 
 def write_header_gpx(target_file):
     f = open(target_file, 'w')
@@ -39,8 +43,8 @@ def append_results_to_file_gpx(target_file, coordinates, names, tags, ratings,
         else:
             f.write('    <extensions><color>#b43775c5</color></extensions>\n')
         f.write('    <desc>\n')
-        f.write(addresses[i].strip() + '\n')
-        f.write('Phone: ' + phone_numbers[i].strip() + '\n')
+        f.write(addresses[i] + '\n')
+        f.write('Phone: ' + phone_numbers[i] + '\n')
         if tags[i] != "":
             f.write('Type: ' + tags[i] + '\n')
         f.write('Rating: ' + ratings[i] + '\n')
@@ -157,8 +161,8 @@ def parse_results_page(results_url, page_no, target_file):
     for business in parsed_html.body.findAll('div', class_="row venue-list-item fg-form"):
         restaurant_url = 'http://www.happycow.net' + business.find('a').get('href')
         coordinates.append(parse_restaurant_page(restaurant_url))
-        names.append(business.find('a').text)
-        tags.append(business.find('span').text)
+        names.append(normalize(business.find('a').text))
+        tags.append(normalize(business.find('span').text))
         stars = business.find('ul', class_="venue-ratings list-inline")
         if stars is None:
             rating = "unknown"
@@ -171,7 +175,7 @@ def parse_results_page(results_url, page_no, target_file):
            if p.find('i', class_="fa fa-map-marker"):
                address = p.text
         if address is not None:
-            addresses.append(address)
+            addresses.append(normalize(address))
         else:
             addresses.append('')
         phone_number = None
@@ -179,12 +183,12 @@ def parse_results_page(results_url, page_no, target_file):
            if p.find('i', class_="fa fa-phone"):
                phone_number = p.text
         if phone_number is not None:
-            phone_numbers.append(phone_number)
+            phone_numbers.append(normalize(phone_number))
         else:
             phone_numbers.append('')
         opening_hour = business.find('span', class_='venue-hours-container')
         if opening_hour is not None:
-            opening_hours.append(opening_hour.attrs['data-summary'])
+            opening_hours.append(normalize(opening_hour.attrs['data-summary']))
         else:
             opening_hours.append('')
 
@@ -193,16 +197,15 @@ def parse_results_page(results_url, page_no, target_file):
            if "uisine" in p.text:
                cuisine = p.text
         if cuisine is not None:
-            cuisines.append(cuisine)
+            cuisines.append(normalize(cuisine))
         else:
             cuisines.append('')
         divs = business.findAll("div", class_="col-xs-12")
         description = divs[-1].find('p').text
         if description is not None:
-            descriptions.append(description)
+            descriptions.append(normalize(description))
         else:
             description.append('')
-        # sleep(random.random())
 
     append_results_to_file(target_file, coordinates, names, tags, ratings,
                            addresses, phone_numbers, opening_hours, cuisines,

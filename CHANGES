@@ -1,3 +1,7 @@
+Since version 0.2.1:
+
+  - Fixed: Python 2 compatibility restored.
+
 Version 0.2.1: 2016-08-06
 
   - New: Different restaurant types get different colours.
