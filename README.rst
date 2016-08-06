@@ -6,13 +6,13 @@ The primary reason for this crawler is that HappyCow is difficult to use on a mo
 
 Dependencies
 ============
-The script works with both Python 2 and 3. It relies on `Beautiful Soup <http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
+The script works with both Python 2 and 3. It relies on `BeautifulSoup4 <http://www.crummy.com/software/BeautifulSoup/>`_>=4 for HTML parsing.
 
 Usage
 =====
 The script takes two parameters. The first is a URL for the results page of a city. The second is the name of the KML or GPX file. For example:
 
-``$ python http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
+``$ happycowler http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
 
 The type of the file is determined by the extension of the filename.
 
