@@ -1,8 +1,8 @@
 HappyCowler
 ===========
-HappyCowler is a crawler and parser for extracting geospatial data from HappyCow.net. The script crawls the descriptions and coordinates from the website, and writes a GPX or KML file with the extracted information. Currently, the GPX file is targeted at `Osmand <http://osmand.net/>`_.
+HappyCowler is a crawler and parser for extracting geospatial data from `HappyCow.net <https://happycow.net/>`_ that liberates vegans and vegetarians from having to access the Internet while looking for a restaurant. The script crawls the descriptions and coordinates from the website and generates a GPX or KML file with the extracted information. Currently, the GPX file is tuned for `Osmand <http://osmand.net/>`_.
 
-The primary reason for this crawler is that HappyCow is difficult to use on a mobile. The apps require the presence of proprietary market applications such as Google Play and payment. Thus it is not possible to obtain the app anonymously. The website itself relies heavily on Javascript, and it is next to useless on a cell phone. By crawling the database, we obtain an offline file that can be used with a GPS app of your choice, without need for Internet access while on the go.
+The primary reason for this crawler is that HappyCow is impossible to use on a mobile browser. While apps are available, they require the presence of proprietary applications such as Google Play. Furthermore, a payment is also required. Thus it is not possible to obtain the app without sacrificing your privacy. By crawling the database, we obtain an offline file that can be used with a GPS app of your choice, without need for Internet access while on the go.
 
 Dependencies
 ============
@@ -14,11 +14,16 @@ The script takes two parameters. The first is a URL for the results page of a ci
 
 ``$ happycowler http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
 
-The type of the file is determined by the extension of the filename.
+The type of the file is determined by the extension of the filename. Once the scraping finished, copy the file to your phone where your mapping app can find it. For instance, in Osmand, the contents of the folder ``osmand/tracks`` can easily be put on the map.
 
 Installation
 ============
-Follow the standard procedure for installing Python modules from source:
+The code is available on PyPI, hence it can be installed by
+
+``$ sudo pip install happycowler``
+
+For the development version, clone it from git and follow the standard
+procedure for installing Python modules from source:
 
 ``$ sudo python setup.py install``
 
