@@ -10,7 +10,7 @@ The script works with both Python 2 and 3. It relies on `BeautifulSoup4 <http://
 
 Usage
 =====
-The script takes two parameters. The first is a URL for the results page of a city. The second is the name of the KML or GPX file. For example:
+The script takes two parameters. The first is a URL for the results page of a city. The second is the name of the GPX or KML file. For example:
 
 ``$ happycowler http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
 

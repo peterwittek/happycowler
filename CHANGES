@@ -1,3 +1,8 @@
+Version 0.2.1: 2016-08-06
+
+  - New: Different restaurant types get different colours.
+  - Fixed: Single-page results are now correctly parsed.
+
 Version 0.2: 2016-08-06
 
   - New: It can generate a GPX file for using it with Osmand.
