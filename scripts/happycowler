@@ -16,8 +16,8 @@ def normalize(text):
 
 def write_header_gpx(target_file):
     f = open(target_file, 'w')
-    f.write('<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n');
-    f.write('<gpx version="1.0" creator="HappyCowler" xmlns="http://www.topografix.com/GPX/1/0">\n');
+    f.write('<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n')
+    f.write('<gpx version="1.0" creator="HappyCowler" xmlns="http://www.topografix.com/GPX/1/0">\n')
     f.close()
 
 def write_footer_gpx(target_file):
@@ -63,8 +63,8 @@ def append_results_to_file_gpx(target_file, coordinates, names, tags, ratings,
 
 def write_header_kml(target_file):
     f = open(target_file, 'w')
-    f.write('<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n');
-    f.write('<kml xmlns="http://earth.google.com/kml/2.1">\n');
+    f.write('<?xml version=\'1.0\' encoding=\'UTF-8\'?>\n')
+    f.write('<kml xmlns="http://earth.google.com/kml/2.1">\n')
     f.write('<Document>\n')
     f.close()
 
@@ -139,7 +139,7 @@ def parse_restaurant_page(restaurant_url):
     gmap_link = parsed_restaurant_html.find("div",
                                             class_="box-map-links").find('a')
     text_link = gmap_link.attrs["href"]
-    start=text_link.find('q=loc:')+6
+    start = text_link.find('q=loc:') + 6
     lat, lon = text_link[start:].split('+')
     return (lat, lon)
 
@@ -172,16 +172,16 @@ def parse_results_page(results_url, page_no, target_file):
         ratings.append(rating)
         address = None
         for p in business.findAll('p'):
-           if p.find('i', class_="fa fa-map-marker"):
-               address = p.text
+            if p.find('i', class_="fa fa-map-marker"):
+                address = p.text
         if address is not None:
             addresses.append(normalize(address))
         else:
             addresses.append('')
         phone_number = None
         for p in business.findAll('p'):
-           if p.find('i', class_="fa fa-phone"):
-               phone_number = p.text
+            if p.find('i', class_="fa fa-phone"):
+                phone_number = p.text
         if phone_number is not None:
             phone_numbers.append(normalize(phone_number))
         else:
@@ -191,11 +191,10 @@ def parse_results_page(results_url, page_no, target_file):
             opening_hours.append(normalize(opening_hour.attrs['data-summary']))
         else:
             opening_hours.append('')
-
         cuisine = None
         for p in business.findAll('p'):
-           if "uisine" in p.text:
-               cuisine = p.text
+            if "uisine" in p.text:
+                cuisine = p.text
         if cuisine is not None:
             cuisines.append(normalize(cuisine))
         else:
@@ -219,12 +218,12 @@ def parse_results_page(results_url, page_no, target_file):
                     parse_results_page("http://www.happycow.net",
                                        a.attrs['href'], target_file)
 
-
-if len(sys.argv) != 3:
-    print("Usage: python happycowler.py results_url output_file")
-    exit(-1)
-result_page = sys.argv[1]
-target_file = sys.argv[2]
-write_header(target_file)
-parse_results_page(result_page,'',target_file)
-write_footer(target_file)
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python happycowler.py results_url output_file")
+        exit(-1)
+    result_page = sys.argv[1]
+    target_file = sys.argv[2]
+    write_header(target_file)
+    parse_results_page(result_page, '', target_file)
+    write_footer(target_file)
