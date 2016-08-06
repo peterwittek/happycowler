@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 12 12:52:20 2014
-
-@author: wittek
-"""
+#!/usr/bin/python
 from __future__ import print_function
 try:
     from urllib2 import Request, urlopen
