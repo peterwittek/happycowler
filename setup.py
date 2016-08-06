@@ -2,19 +2,20 @@ from distutils.core import setup
 
 setup(
     name='HappyCowler',
-    version='0.1',
+    version='0.2',
     author='Peter Wittek',
     author_email='peterwittek@users.noreply.github.com',
     packages=['happycowler'],
-    url='http://peterwittek.github.io/happycowler/',
+    url='http://github.com/peterwittek/happycowler/',
     keywords=[
         'vegan',
         'vegetarian',
      'happycow.net',
      'crawler',
-     'kml'],
+     'kml',
+     'gpx'],
     license='LICENSE',
-    description='Crawl the HappyCow database to KML files for offline use.',
+    description='Crawl the HappyCow database to GPX or KML files for offline use.',
     long_description=open('README.rst').read(),
     classifiers=[
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',

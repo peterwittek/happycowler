@@ -1,5 +1,6 @@
-Since v0.1:
-  
+Version 0.2: 2016-08-06
+
+  - New: It can generate a GPX file for using it with Osmand.
   - New: It works with Python 3.
 
 Version 0.1: 2014-09-12
