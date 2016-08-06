@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='happycowler',
-    version='0.2.1',
+    version='0.2.2',
     author='Peter Wittek',
     author_email='peterwittek@users.noreply.github.com',
     scripts=['scripts/happycowler'],
@@ -24,7 +24,7 @@ setup(
          'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
          'Operating System :: OS Independent',
          'Intended Audience :: End Users/Desktop',
-         'Development Status :: 3 - Alpha',
+         'Development Status :: 4 - Beta',
          'Programming Language :: Python'
     ],
     install_requires=[
