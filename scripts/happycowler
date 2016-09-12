@@ -161,7 +161,9 @@ def parse_results_page(results_url, target_file, page_no=''):
     for business in parsed_html.body.findAll('div', class_="row venue-list-item fg-form"):
         restaurant_url = 'http://www.happycow.net' + business.find('a').get('href')
         coordinates.append(parse_restaurant_page(restaurant_url))
-        names.append(normalize(business.find('a').text))
+        name = normalize(business.find('a').text)
+        print('Processing entry: ' + name)
+        names.append(name)
         tags.append(normalize(business.find('span').text))
         stars = business.find('ul', class_="venue-ratings list-inline")
         if stars is None:
