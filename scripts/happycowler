@@ -215,10 +215,10 @@ def parse_results_page(results_url, target_file, page_no=''):
     if pagination is not None:
         for a in pagination.findAll('a'):
             if 'aria-label' in a.attrs and a.attrs['aria-label'] == "Next":
-                new_url = "http://www.happycow.net" + a.attrs['href']
+                new_url = "https://www.happycow.net" + a.attrs['href']
                 if results_url + page_no != new_url:
-                    parse_results_page("http://www.happycow.net",
-                                       a.attrs['href'], target_file)
+                    parse_results_page("https://www.happycow.net",
+                                       target_file, a.attrs['href'])
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
