@@ -20,12 +20,12 @@ Installation
 ============
 The code is available on PyPI, hence it can be installed by
 
-``$ sudo pip install happycowler``
+``$ pip install happycowler``
 
 For the development version, clone it from git and follow the standard
 procedure for installing Python modules from source:
 
-``$ sudo python setup.py install``
+``$ python setup.py install``
 
 Disclaimer
 ==========

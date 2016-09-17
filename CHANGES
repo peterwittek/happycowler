@@ -1,3 +1,8 @@
+Version 0.2.3: 2016-09-17
+
+  - New: Progress bar showing current entry processed and a percentage.
+  - Fixed: Cities with multiple-page results are crawled correctly.
+
 Version 0.2.2: 2016-08-07
 
   - Fixed: Python 2 compatibility restored.
