@@ -2,4 +2,6 @@ include *.py
 include CHANGES
 include LICENSE
 include README.rst
+recursive-include happycowler *
 recursive-include scripts *
+recursive-include tests *

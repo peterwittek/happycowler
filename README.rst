@@ -10,11 +10,14 @@ The script works with both Python 2 and 3. It relies on `BeautifulSoup4 <http://
 
 Usage
 =====
-The script takes two parameters. The first is a URL for the results page of a city. The second is the name of the GPX or KML file. For example:
+On the command line, the script takes two parameters. The first is a URL for the results page of a city. The second is the name of the GPX or KML file. For example:
 
-``$ happycowler http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
+``$ happycowl http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
 
 The type of the file is determined by the extension of the filename. Once the scraping finished, copy the file to your phone where your mapping app can find it. For instance, in Osmand, the contents of the folder ``osmand/tracks`` can easily be put on the map.
+
+You can also use it as a module. In this case, instantiate the  class `HappyCow(city_url, target_file=None, verbose=0)`. Then you can start crawling by calling the `crawl()` method of the class.
+
 
 Installation
 ============

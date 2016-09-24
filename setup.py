@@ -30,4 +30,5 @@ setup(
     install_requires=[
         "beautifulsoup4 >= 4"
     ],
+    test_suite="tests"
 )

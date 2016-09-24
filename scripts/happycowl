@@ -1,0 +1,12 @@
+#!/usr/bin/python
+from __future__ import print_function
+import sys
+from happycowler import HappyCowler
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: happycowler city_url output_file")
+        exit(-1)
+    hc = HappyCowler(sys.argv[1], sys.argv[2], verbose=1)
+    hc.crawl()
