@@ -1,5 +1,4 @@
 import unittest
-from test import test_support
 from bs4 import BeautifulSoup
 from happycowler import HappyCowler
 from happycowler.happycowler import parse_restaurant_page
@@ -30,9 +29,6 @@ class SingleResultsPage(unittest.TestCase):
         hc._parse_results_page(parsed_text, page_no='', deep_crawl=False)
         self.assertTrue(hc.total_entries == 2)
         self.assertTrue(hc.names == ['Frollein Elfriede', 'Eis Vannini'])
-
-def test_main():
-    test_support.run_unittest(SingleRestaurant, SingleResultsPage)
 
 if __name__ == '__main__':
     test_main()
