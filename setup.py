@@ -8,7 +8,8 @@ setup(
     version='0.2.3',
     author='Peter Wittek',
     author_email='peterwittek@users.noreply.github.com',
-    scripts=['scripts/happycowler'],
+    packages=['happycowler'],
+    scripts=['scripts/happycowl'],
     url='https://github.com/peterwittek/happycowler/',
     keywords=[
         'vegan',
