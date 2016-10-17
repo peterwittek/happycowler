@@ -181,5 +181,7 @@ class HappyCowler(object):
         if self.target_file is not None:
             write_header(self.target_file)
         self._parse_results_page(get_parsed_html(self.city_url))
+        if self.verbose > 0:
+            sys.stdout.write("\r")
         if self.target_file is not None:
             write_footer(self.target_file)
