@@ -15,10 +15,11 @@ from .file_io import append_results_to_file, write_footer, write_header
 
 
 def normalize(text):
+    processed_text = text.replace("&", "&amp;")
     if sys.version_info.major == 3:
-        return text.strip()
+        return processed_text.strip()
     else:
-        return text.encode("utf-8").strip()
+        return processed_text.encode("utf-8").strip()
 
 
 def get_parsed_html(url):
