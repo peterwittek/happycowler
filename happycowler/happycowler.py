@@ -29,7 +29,7 @@ def get_parsed_html(url):
 
 
 def parse_restaurant_page(restaurant_page):
-    gmap_link = restaurant_page.find("div", class_="box-map-links").find('a')
+    gmap_link = restaurant_page.find("div", class_="box__map__links").find('a')
     text_link = gmap_link.attrs["href"]
     start = text_link.find('q=loc:') + 6
     lat, lon = text_link[start:].split('+')
@@ -85,7 +85,7 @@ class HappyCowler(object):
         cuisines = []
         descriptions = []
         for business in parsed_html.body.findAll('div',
-                                                 class_="row venue-list-item fg-form"):
+                                                 class_="row venue-list-item"):
             self.processed_entries += 1
             restaurant_url = 'https://www.happycow.net' + \
                 business.find('a').get('href')

@@ -10,7 +10,7 @@ data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 class SingleRestaurant(unittest.TestCase):
 
     def test_parse_restaurant_page(self):
-        single_restaurant_test_file = data_path + "Bar Celoneta Sangria Bar - Barcelona : Vegan Restaurant Reviews and Ratings - HappyCow.htm"
+        single_restaurant_test_file = data_path + "BarCeloneta Sangria Bar - Barcelona : Vegan Restaurant Reviews and Ratings - HappyCow.htm"
         with open(single_restaurant_test_file, 'r') as f:
             text = f.read()
         parsed_text = BeautifulSoup(text, "html.parser")
