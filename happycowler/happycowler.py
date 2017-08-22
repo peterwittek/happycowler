@@ -4,7 +4,7 @@ Created on Sat Sep 24 18:02:47 2016
 
 @author: pwittek
 """
-from __future__ import print_function
+from __future__ import division, print_function
 try:
     from urllib2 import Request, urlopen
 except ImportError:
