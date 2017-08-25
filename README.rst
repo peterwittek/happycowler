@@ -1,8 +1,8 @@
 HappyCowler
 ===========
-HappyCowler is a crawler and parser for extracting geospatial data from `HappyCow.net <https://happycow.net/>`_ that liberates vegans and vegetarians from having to access the Internet while looking for a restaurant. The script crawls the descriptions and coordinates from the website and generates a GPX or KML file with the extracted information. Currently, the GPX file is tuned for `Osmand <http://osmand.net/>`_.
+HappyCowler is a crawler and parser for extracting geospatial data from `HappyCow.net <https://happycow.net/>`_, liberating vegans and vegetarians from the pain of having to access the Internet while looking for a restaurant. The script crawls the descriptions and coordinates from the website, and generates a GPX or KML file with the extracted information. Currently, the GPX file is tuned for `Osmand <http://osmand.net/>`_.
 
-The primary reason for this crawler is that HappyCow is impossible to use on a mobile browser. While apps are available, they require the presence of proprietary applications such as Google Play. Furthermore, a payment is also required. Thus it is not possible to obtain the app without sacrificing your privacy. By crawling the database, we obtain an offline file that can be used with a GPS app of your choice, without need for Internet access while on the go.
+The primary reason for creating this crawler is that HappyCow is impossible to use on a smartphone. While an official app is available, it requires the presence of proprietary applications such as Google Play. Furthermore, a payment is also required. Thus it is not possible to obtain the app without sacrificing your privacy. By crawling the database, we obtain an offline file that can be used with a GPS app of your choice, without having to access the net while on the go.
 
 Dependencies
 ============
@@ -14,7 +14,7 @@ On the command line, the script takes two parameters. The first is a URL for the
 
 ``$ happycowl http://www.happycow.net/asia/japan/tokyo/ Tokyo_Restaurants.gpx``
 
-The type of the file is determined by the extension of the filename. Once the scraping finished, copy the file to your phone where your mapping app can find it. For instance, in Osmand, the contents of the folder ``osmand/tracks`` can easily be put on the map.
+The type of the file is determined by the extension of the filename. Once scraping is finished, copy the file to your phone where your GPS app can find it. For instance, in Osmand, the contents of the folder ``osmand/tracks`` can easily be put on the map.
 
 You can also use it as a module. In this case, instantiate the  class `HappyCow(city_url, target_file=None, verbose=0)`. Then you can start crawling by calling the `crawl()` method of the class.
 
