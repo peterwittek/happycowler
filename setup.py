@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='happycowler',
-    version='0.2.3',
+    version='0.2.4',
     author='Peter Wittek',
     author_email='peterwittek@users.noreply.github.com',
     packages=['happycowler'],
