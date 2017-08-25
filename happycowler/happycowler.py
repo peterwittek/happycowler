@@ -161,6 +161,7 @@ class HappyCowler(object):
         self.cuisines += cuisines
         self.descriptions += descriptions
         pagination = parsed_html.body.find('ul', class_="pagination")
+        last = False
         if pagination is not None:
             for a in pagination.findAll('a'):
                 if 'aria-label' in a.attrs and a.attrs['aria-label'] == "Next":
@@ -169,6 +170,11 @@ class HappyCowler(object):
                     if page_no != new_page_no:
                         new_page = get_parsed_html(self.city_url + new_page_no)
                         self._parse_results_page(new_page, new_page_no)
+                    else:
+                        last = True
+                    break
+            if last and self.verbose > 0:
+                sys.stdout.write("\n")
         else:
             if self.verbose > 0:
                 sys.stdout.write("\n")
