@@ -23,7 +23,8 @@ setup(
          'Programming Language :: Python'
     ],
     install_requires=[
-        "beautifulsoup4 >= 4"
+        "beautifulsoup4 >= 4",
+        "incapsula-cracker-py3"
     ],
     test_suite="tests"
 )

@@ -11,6 +11,7 @@ except ImportError:
     from urllib.request import Request, urlopen
 import sys
 from bs4 import BeautifulSoup
+from incapsula import IncapSession
 from .file_io import append_results_to_file, write_footer, write_header
 
 
@@ -23,8 +24,9 @@ def normalize(text):
 
 
 def get_parsed_html(url):
-    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    page = urlopen(req).read()
+    session = IncapSession(user_agent='Mozilla/5.0')
+    response = session.get(url)
+    page = response.content
     return BeautifulSoup(page, "html.parser")
 
 
@@ -40,9 +42,9 @@ class HappyCowler(object):
 
     """Class for crawling the HappyCow database
 
-    :param city_url: The URL string for the main page of the city to be
+    :param city_url: The URL string(s) for the main page of the city to be
                      crawled.
-    :type city_url: str.
+    :type city_url: str or list of str
     :param target_file: Optional parameter to write the results to a target
                         file.
     :type target_file: str.
@@ -56,7 +58,10 @@ class HappyCowler(object):
     def __init__(self, city_url, target_file=None, verbose=0):
         """Constructor for the class.
         """
-        self.city_url = city_url
+        if isinstance(city_url, list):
+            self.city_url = city_url
+        else:
+            self.city_url = [city_url]
         self.target_file = target_file
         self.verbose = verbose
         self.coordinates = []
@@ -71,7 +76,8 @@ class HappyCowler(object):
         self.processed_entries = 0
         self.total_entries = 0
 
-    def _parse_results_page(self, parsed_html, page_no='', deep_crawl=True):
+    def _parse_results_page(self, url, page_no='', deep_crawl=True):
+        parsed_html = get_parsed_html(url + page_no)
         if self.total_entries == 0:
             h1 = parsed_html.body.find('h1').text.strip()
             self.total_entries = int(h1[h1.index("(")+1:h1.index(")")])
@@ -168,8 +174,7 @@ class HappyCowler(object):
                     new_page_no = a.attrs['href']
                     new_page_no = new_page_no[new_page_no.index("?page"):]
                     if page_no != new_page_no:
-                        new_page = get_parsed_html(self.city_url + new_page_no)
-                        self._parse_results_page(new_page, new_page_no)
+                        self._parse_results_page(url, new_page_no)
                     else:
                         last = True
                     break
@@ -187,7 +192,10 @@ class HappyCowler(object):
         """
         if self.target_file is not None:
             write_header(self.target_file)
-        self._parse_results_page(get_parsed_html(self.city_url))
+        for url in self.city_url:
+            if self.verbose > 0:
+                print(url)
+            self._parse_results_page(url)
         if self.verbose > 0:
             sys.stdout.write("\r")
         if self.target_file is not None:
